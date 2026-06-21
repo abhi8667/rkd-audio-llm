@@ -1,0 +1,19 @@
+model:
+  encoder: "microsoft/wavlm-large"
+  decoder: "Qwen/Qwen2.5-1.5B"
+  teacher: "Qwen/Qwen2-Audio-7B" # Or another suitable teacher
+
+training:
+  batch_size: 4
+  learning_rate: 3e-4
+  num_epochs: 10
+  checkpoint_dir: "./checkpoints"
+
+loss_weights:
+  alpha: 1.0 # RKD-Distance weight
+  beta: 0.5  # RKD-Angle weight
+
+data:
+  manifest_path: "./data/manifest.jsonl"
+  sample_rate: 16000
+  max_audio_length_sec: 30
